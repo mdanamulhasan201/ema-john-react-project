@@ -1,6 +1,11 @@
 .header{
-    background-color: #1C2B35;  
-  }
+   height: 90px;
+   background-color: #0a184b;
+   display: flex;
+   justify-content: space-between;
+   
+   align-items: center;
+}
   
   .header  a{
      color: #FFFFFF;  
@@ -10,3 +15,13 @@
      color: orange;
   }
   
+  @media screen and (max-width:576px) {
+
+   .header{
+       flex-direction: column;
+       padding: 20px 0px;
+   }
+
+
+
+}
