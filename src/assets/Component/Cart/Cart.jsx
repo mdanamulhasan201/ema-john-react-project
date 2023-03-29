@@ -7,17 +7,25 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 const Cart = ({ cart }) => {
     // const cart = props.cart //option-1
     // const {cart} = props //option-2
- 
-    // *********total price + Shipping charge******
-    let totalPrice =0;
-    let totalShipping = 0;
 
-    for(const product of cart){
-            totalPrice = totalPrice + product.price;
-            totalShipping = totalShipping + product.shipping
+    // *********total price + Shipping charge******
+    let totalPrice = 0;
+    let totalShipping = 0;
+    let quantity = 0;
+
+
+    for (const product of cart) {
+        // product.quantity = product.quantity || 1;
+        if (product.quantity === 0) {
+            product.quantity = 1;
+        }
+        totalPrice = totalPrice + product.price * product.quantity;
+        totalShipping = totalShipping + product.shipping;
+        quantity = quantity + product.quantity;
+
     }
     // ***********tax 7%********
-    const tax = totalPrice*5/100;
+    const tax = totalPrice * 5 / 100;
 
     // Grand Total
     const grandTotal = totalPrice + totalShipping + tax;
@@ -30,7 +38,7 @@ const Cart = ({ cart }) => {
         <div className="card w-96 bg-error shadow-xl m-5 sticky top-0">
             <div className="card-body">
                 <h2 className="card-title">Order Summary</h2>
-                <p>Selected item: {cart.length}</p>
+                <p>Selected item: {quantity}</p>
                 <p>Total Price: ${totalPrice}</p>
                 <p>Total Shipping Charge: ${totalShipping}</p>
                 <p>Tax: ${tax.toFixed(2)}</p>
