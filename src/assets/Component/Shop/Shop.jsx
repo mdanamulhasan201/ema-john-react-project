@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 
@@ -14,31 +15,32 @@ const Shop = () => {
 
     // event handler
     const handleAddToCart = (product) => {
-        const newCart =[...cart, product];
+        const newCart = [...cart, product];
         setCart(newCart);
- 
- 
-     }
+
+
+    }
 
     return (
         <div className='shop-container'>
             {/* cart */}
             <div className='product-container ms-9 grid grid-flow-col-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                 {
-                    products.map(product => <Product 
+                    products.map(product => <Product
                         key={product.id}
                         product={product}
                         handleAddToCart={handleAddToCart}
-                        ></Product>)
+                    ></Product>)
                 }
             </div>
 
             {/* calculator */}
             <div className='cart-container'>
-            <h4 className='font-bold mb-5'>Order summary</h4>
-                <p>Selected item: {cart.length}</p>
+                {/* <h4 className='font-bold mb-5 mt-7'>Order summary</h4>
+                <p>Selected item: {cart.length}</p> */}
+           <Cart cart={cart}></Cart>
             </div>
-            
+
         </div>
     );
 };
